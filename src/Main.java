@@ -3,6 +3,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
+        int score = 0;
         do {
             System.out.println("Hello! This is CoinFlip! Make your choice!");
             System.out.println("'heads' or 'tails'?");
@@ -13,8 +14,6 @@ public class Main {
 
             String optionHead = "heads";
             String optionTails = "tails";
-
-            int score = 0;
 
             if(choice.equals(optionHead) || choice.equals(optionTails)) {
                 String[] choices = {"heads", "tails"};
