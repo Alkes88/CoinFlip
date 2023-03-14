@@ -1,7 +1,7 @@
-# CoinFlip
-A Simple CoinFlip-game, to improve own skills
+# Description
+A CoinFlip-game, to improve own coding skills
 
-
+# Information
 |        Title         |           Name            | 
 |:--------------------:|:-------------------------:|
 | Programming language |          Java 18.         | 
