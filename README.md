@@ -9,7 +9,7 @@ A CoinFlip-game, to improve own coding skills
  
 
 # Stuff to implement
-* Refactoring/smaller functions
-* Multiple rounds
+* Refactoring/smaller functions (25% done)
+* "Multiple rounds"
 * "Menu" screen
 * Tests
