@@ -3,22 +3,18 @@ package coinflip.main;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         int score = 0;
         printMessage("What's the most you ever lost on a coin toss?");
         do {
-            printMessage("You stand to win everything. Call it!");
-            printMessage("It's either 'heads' or 'tails'");
+            Scanner userInput = new Scanner(System.in);
+            String choice = getChoiceFromUser(userInput);
 
-            Scanner option = new Scanner(System.in);
+            CoinSide validChoice = isValid(choice);
 
-            String choice = option.nextLine();  // Read user input
-
-            String optionHead = "heads";
-            String optionTails = "tails";
-
-            if(choice.equals(optionHead) || choice.equals(optionTails)) {
+            if(validChoice != null) {
                 String coinFace = flipCoin();
 
                 printMessage("You chose "+choice);
@@ -30,12 +26,10 @@ public class Main {
                 if (coinFace.equals(choice)) {
                     printMessage("Well done!");
                     score+=1;
-                    printMessage("Your score is: "+score+"!");
                     delay(2);
                 }
                 else {
                     printMessage("Oops... Will you hold still please?");
-                    printMessage("Your score is: "+score+"!");
                     delay(2);
                 }
             }
@@ -45,15 +39,15 @@ public class Main {
                 continue;
             }
 
+            printMessage("Your score is: "+score);
             printMessage("One more time? 'y' or 'n'");
-            String optionRestart = option.nextLine();
+            String optionRestart = userInput.nextLine();
             if(optionRestart.equals("y")) {
                 printMessage("Again...");
                 delay(1);
-                break;
             }
             else {
-                printMessage("Good day to you...");
+                printMessage("Goodbye... for now");
                 delay(1);
                 break;
             }
@@ -70,6 +64,28 @@ public class Main {
         String[] choices = {"heads", "tails"};
         return choices[new Random().nextInt(choices.length)];
     }
+    private static String getChoiceFromUser(Scanner userInput){
+        printMessage("You stand to win everything. Call it!");
+        printMessage("It's either 'heads' or 'tails'");
+        return userInput.nextLine();
+    }
+     enum CoinSide{
+        HEADS,
+        TAILS
+    }
+    private static CoinSide isValid(String choice){
+        if ((choice.equalsIgnoreCase(CoinSide.HEADS.toString())) || (choice.equalsIgnoreCase(CoinSide.TAILS.toString()))){
+            int randomSide = (int) (Math.random() * 2);
+            return (randomSide == 0) ? CoinSide.HEADS : CoinSide.TAILS;
+        }
+        else{
+            return null;
+        }
+    }
 
+    //private static guessedCorrectly(){
+    //}
 
+    //private static playAgain(){
+    //}
 }
