@@ -6,9 +6,10 @@ import java.util.concurrent.TimeUnit;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         int score = 0;
+        printMessage("What's the most you ever lost on a coin toss?");
         do {
-            printMessage("Hello! This is CoinFlip! Make your choice!");
-            printMessage("'heads' or 'tails'?");
+            printMessage("You stand to win everything. Call it!");
+            printMessage("It's either 'heads' or 'tails'");
 
             Scanner option = new Scanner(System.in);
 
@@ -18,9 +19,6 @@ public class Main {
             String optionTails = "tails";
 
             if(choice.equals(optionHead) || choice.equals(optionTails)) {
-                //String[] choices = {"heads", "tails"};
-                //String coinToss = (choices[new Random().nextInt(choices.length)]);
-
                 String coinFace = flipCoin();
 
                 printMessage("You chose "+choice);
@@ -30,33 +28,32 @@ public class Main {
                 delay(1);
 
                 if (coinFace.equals(choice)) {
-                    printMessage("Congratulations! You won!");
+                    printMessage("Well done!");
                     score+=1;
                     printMessage("Your score is: "+score+"!");
                     delay(2);
                 }
                 else {
-                    printMessage("Better luck next time!");
+                    printMessage("Oops... Will you hold still please?");
                     printMessage("Your score is: "+score+"!");
                     delay(2);
                 }
             }
             else{
-                printMessage("Wrong input!");
-                printMessage("Your score is: "+score+"!");
+                printMessage("What was that? One more time. Make your choice!");
                 delay(2);
                 continue;
             }
 
-            printMessage("One more time? Press 'y' for YES, and 'n' for NO");
+            printMessage("One more time? 'y' or 'n'");
             String optionRestart = option.nextLine();
             if(optionRestart.equals("y")) {
-                printMessage("Restarting game...");
+                printMessage("Again...");
                 delay(1);
                 break;
             }
             else {
-                printMessage("Quitting...");
+                printMessage("Good day to you...");
                 delay(1);
                 break;
             }
@@ -69,10 +66,10 @@ public class Main {
     private static void delay(int seconds) throws InterruptedException {
         TimeUnit.SECONDS.sleep(seconds);
     }
-
     private static String flipCoin(){
         String[] choices = {"heads", "tails"};
-        String resultOfFlip = choices[new Random().nextInt(choices.length)];
-        return resultOfFlip;
+        return choices[new Random().nextInt(choices.length)];
     }
+
+
 }
