@@ -9,6 +9,25 @@ A CoinFlip-game, to improve own coding skills
 | Programming language |   Java 18     | 
 |         IDE          | IntelliJ IDEA |   
 
+# Structure
+
+.
+├── CoinFlip.iml
+├── README.md
+├── out
+│   └── production
+│       └── CoinFlip
+│           └── coinflip
+│               └── main
+│                   ├── Main$CoinSide.class
+│                   └── Main.class
+└── src
+    └── coinflip
+        └── main
+            ├── Game.java
+            └── Main.java
+
+
 # To be implemented
 * "Menu" screen
 * "Multiple rounds"
