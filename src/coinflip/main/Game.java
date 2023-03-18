@@ -9,12 +9,29 @@ public class Game {
         HEADS,
         TAILS
     }
+    private void startMenu() {
+        printMessage("=== CoinFlip ===");
+        printMessage("1. Play a single game");
+        printMessage("2. Play a 'best of 3' game");
+        printMessage("3. Show TopScore");
+        printMessage("4. Quit game");
+        printMessage("================");
+        printMessage("Enter your choice(1,2,3,4): ");
+        printMessage("Pressed 1.");
+    }
+
+    private TopScoreKeeper topScoreKeeper;
+
+    public Game(){
+        topScoreKeeper = new TopScoreKeeper();
+    }
 
     public void start() throws InterruptedException {
         int score = 0;
         printMessage("What's the most you ever lost on a coin toss?");
         Scanner userInput = new Scanner(System.in);
         do {
+            startMenu();
             String choice = getChoiceFromUser(userInput);
 
             CoinSide validChoice = isValid(choice);
@@ -35,6 +52,8 @@ public class Game {
                 continue;
             }
 
+            topScoreKeeper.updateTopScore(score);
+
             String playAgain = playAgain(score, userInput);
 
             if (playAgain.equals("y")) {
@@ -47,7 +66,7 @@ public class Game {
         } while (true);
     }
 
-    private static void printMessage(String message) {
+    public static void printMessage(String message) {
         System.out.println(message);
     }
 
