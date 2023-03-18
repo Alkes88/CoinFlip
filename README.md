@@ -1,16 +1,24 @@
 ![7en0wy](https://user-images.githubusercontent.com/72759116/225460928-749e65b1-ccff-4bad-90e9-1e6faf21c52e.gif)
 
 # Description
-A CoinFlip-game, to improve own coding skills
+A CoinFlip-game, 
+
+# Personal Goal
+Improve own coding skills
 
 # Information
 |        Title         |     Name      | 
 |:--------------------:|:-------------:|
 | Programming language |   Java 18     | 
-|         IDE          | IntelliJ IDEA |   
+|         IDE          | IntelliJ IDEA | 
 
-# Structure
+# Languages and Tools
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white)
+![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)  
 
+## Directory Structure
+### Source Code
+```
 .
 ├── CoinFlip.iml
 ├── README.md
@@ -26,7 +34,7 @@ A CoinFlip-game, to improve own coding skills
         └── main
             ├── Game.java
             └── Main.java
-
+```
 
 # To be implemented
 * "Menu" screen
