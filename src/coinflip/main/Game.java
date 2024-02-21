@@ -9,38 +9,20 @@ public class Game {
         HEADS,
         TAILS
     }
-    private void startMenu() {
-        printMessage("=== CoinFlip ===");
-        printMessage("1. Play a single game");
-        printMessage("2. Play a 'best of 3' game");
-        printMessage("3. Show TopScore");
-        printMessage("4. Quit game");
-        printMessage("================");
-        printMessage("Enter your choice(1,2,3,4): ");
-        printMessage("Pressed 1.");
-    }
-
-    private TopScoreKeeper topScoreKeeper;
-
-    public Game(){
-        topScoreKeeper = new TopScoreKeeper();
-    }
-
     public void start() throws InterruptedException {
         int score = 0;
         printMessage("What's the most you ever lost on a coin toss?");
         Scanner userInput = new Scanner(System.in);
         do {
-            startMenu();
             String choice = getChoiceFromUser(userInput);
 
-            CoinSide validChoice = isValid(choice);
-            if (validChoice != null) {
+            boolean validChoice = isValid(choice);
+            if (validChoice) {
                 String coinFace = flipCoin();
 
                 tossing(choice, CoinSide.valueOf(coinFace));
 
-                if (coinFace.equals(choice)) {
+                if (coinFace.equalsIgnoreCase(choice)) {
                     printMessage("Well done!");
                     score += 1;
                 } else {
@@ -51,8 +33,6 @@ public class Game {
                 delay(2);
                 continue;
             }
-
-            topScoreKeeper.updateTopScore(score);
 
             String playAgain = playAgain(score, userInput);
 
@@ -85,13 +65,8 @@ public class Game {
         return userInput.nextLine();
     }
 
-    private static CoinSide isValid(String choice) {
-        if ((choice.equalsIgnoreCase(CoinSide.HEADS.toString())) || (choice.equalsIgnoreCase(CoinSide.TAILS.toString()))) {
-            int randomSide = (int) (Math.random() * 2);
-            return (randomSide == 0) ? CoinSide.HEADS : CoinSide.TAILS;
-        } else {
-            return null;
-        }
+    private static boolean isValid(String choice) {
+        return (choice.equalsIgnoreCase(CoinSide.HEADS.toString())) || (choice.equalsIgnoreCase(CoinSide.TAILS.toString()));
     }
 
     private static void tossing(String choice, CoinSide coinFace) throws InterruptedException {
