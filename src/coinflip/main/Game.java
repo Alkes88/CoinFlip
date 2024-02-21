@@ -11,39 +11,79 @@ public class Game {
     }
     public void start() throws InterruptedException {
         int score = 0;
-        printMessage("What's the most you ever lost on a coin toss?");
+        boolean exitMenu = false;
         Scanner userInput = new Scanner(System.in);
-        do {
-            String choice = getChoiceFromUser(userInput);
 
-            boolean validChoice = isValid(choice);
-            if (validChoice) {
-                String coinFace = flipCoin();
+        while (!exitMenu) {
+            printMenu();
+            String choice = userInput.nextLine();
 
-                tossing(choice, CoinSide.valueOf(coinFace));
+            switch (choice) {
+                case "1":
+                    score = playGame(score, userInput);
+                    break;
+                case "2":
+                    showTopScore();
+                    start();
+                case "3":
+                    exitMenu = true;
+                    break;
+                default:
+                    printMessage("Invalid. Press 1, 2 or 3");
+            }
+        }
+        printMessage("Quitting...");
+        userInput.close();
+    }
 
-                if (coinFace.equalsIgnoreCase(choice)) {
-                    printMessage("Well done!");
-                    score += 1;
+        private int playGame(int score, Scanner userInput) throws InterruptedException {
+            printMessage("What's the most you ever lost on a coin toss?");
+            do {
+                String choice = getChoiceFromUser(userInput);
+
+                boolean validChoice = isValid(choice);
+                if (validChoice) {
+                    String coinFace = flipCoin();
+
+                    tossing(choice, CoinSide.valueOf(coinFace));
+
+                    if (coinFace.equalsIgnoreCase(choice)) {
+                        printMessage("Well done!");
+                        score += 1;
+                    } else {
+                        printMessage("Oops... Will you hold still please?");
+                    }
                 } else {
-                    printMessage("Oops... Will you hold still please?");
+                    printMessage("What was that? One more time. Make your choice!");
+                    delay(2);
+                    continue;
                 }
-            } else {
-                printMessage("What was that? One more time. Make your choice!");
-                delay(2);
-                continue;
-            }
 
-            String playAgain = playAgain(score, userInput);
+                String playAgain = playAgain(score, userInput);
 
-            if (playAgain.equals("y")) {
-                printMessage("Again...");
-            } else {
-                printMessage("Goodbye... for now");
-                break;
-            }
-            delay(1);
-        } while (true);
+                if (playAgain.equals("y")) {
+                    printMessage("Again...");
+                } else {
+                    printMessage("Goodbye... for now");
+                    userInput.close();
+                    break;
+                }
+                delay(1);
+            } while (true);
+
+            return score;
+        }
+
+    private void showTopScore() {
+        printMessage("Top Score: ");
+    }
+
+    private void printMenu(){
+        printMessage("====== MENU ======");
+        printMessage("1. Start Game");
+        printMessage("2. Show Top Score");
+        printMessage("3. Exit");
+        printMessage("==================");
     }
 
     public static void printMessage(String message) {
