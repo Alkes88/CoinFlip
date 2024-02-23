@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 public class Game {
 
     private int topScore = 0;
-    private final String SCORE_FILE = "highscore.txt";
+    private final String SCORE_FILE = "src/coinflip/main/highscore.txt";
     enum CoinSide {
         HEADS,
         TAILS
