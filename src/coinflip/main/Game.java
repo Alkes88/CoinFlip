@@ -48,23 +48,21 @@ public class Game {
 
             // Process user choice
             switch (choice) {
-                case "1":
+                case "1" ->
                     // Start a new game and update the top score
-                    topScore = playGame(userInput);
-                    break;
-                case "2":
+                        topScore = playGame(userInput);
+                case "2" -> {
                     // Display the top score
                     showTopScore();
                     // Start the menu again
                     start();
-                    break;
-                case "3":
+                }
+                case "3" ->
                     // Exit the menu
-                    exitMenu = true;
-                    break;
-                default:
+                        exitMenu = true;
+                default ->
                     // Invalid input
-                    printMessage("Invalid choice. Press 1, 2, or 3");
+                        printMessage("Invalid choice. Press 1, 2, or 3");
             }
         }
 
