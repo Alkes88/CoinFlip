@@ -1,16 +1,20 @@
 package coinflip.main;
 
+import java.io.*;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Game {
+
+    private int topScore = 0;
+    private final String SCORE_FILE = "highscore.txt";
     enum CoinSide {
         HEADS,
         TAILS
     }
     public void start() throws InterruptedException {
-        int score = 0;
+        loadTopScore();
         boolean exitMenu = false;
         Scanner userInput = new Scanner(System.in);
 
@@ -20,7 +24,7 @@ public class Game {
 
             switch (choice) {
                 case "1":
-                    score = playGame(score, userInput);
+                    topScore = playGame(userInput);
                     break;
                 case "2":
                     showTopScore();
@@ -33,10 +37,12 @@ public class Game {
             }
         }
         printMessage("Quitting...");
+        saveTopScore();
         userInput.close();
     }
 
-        private int playGame(int score, Scanner userInput) throws InterruptedException {
+        private int playGame(Scanner userInput) throws InterruptedException {
+            int score = 0;
             printMessage("What's the most you ever lost on a coin toss?");
             do {
                 String choice = getChoiceFromUser(userInput);
@@ -65,17 +71,42 @@ public class Game {
                     printMessage("Again...");
                 } else {
                     printMessage("Goodbye... for now");
-                    userInput.close();
                     break;
                 }
                 delay(1);
             } while (true);
 
+            if (score > topScore) {
+                topScore = score;
+                printMessage("New Top Score: "+ topScore +"!");
+            }
+
             return score;
         }
 
     private void showTopScore() {
-        printMessage("Top Score: ");
+        printMessage("Top Score: "+ topScore);
+    }
+
+    private void loadTopScore() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(SCORE_FILE))) {
+            String line = reader.readLine();
+            if (line !=null) {
+                topScore = Integer.parseInt(line);
+            }
+        } catch (FileNotFoundException e) {
+                throw new RuntimeException("File not found: "+ SCORE_FILE, e);
+        } catch (IOException | NumberFormatException e) {
+            printMessage("Error loading highest score: " + e.getMessage());
+        }
+    }
+
+    private void saveTopScore() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(SCORE_FILE))) {
+            writer.write(String.valueOf(topScore));
+        } catch (IOException e) {
+            printMessage("Error saving highest score: "+ e.getMessage());
+        }
     }
 
     private void printMenu(){
