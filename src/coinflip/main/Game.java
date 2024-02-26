@@ -123,6 +123,7 @@ public class Game {
                     score += 1; // Increment score
                 } else {
                     Abbreviations.printMessage("Oops... Will you hold still please?");
+                    score = 0;
                 }
             } else {
                 // Invalid choice, prompt the user to try again
@@ -193,12 +194,39 @@ public class Game {
      * If an error occurs while writing, an exception is thrown.
      */
     private void saveTopScore() {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(SCORE_FILE))) {
-            // Write the top score to the file
-            writer.write(String.valueOf(topScore));
-        } catch (IOException e) {
-            // Error saving highest score
-            Abbreviations.printMessage("Error saving highest score: " + e.getMessage());
+        // Load the current top score from the file
+        int currentTopScore = loadTopScoreFromFile();
+
+        if (topScore > currentTopScore) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(SCORE_FILE))) {
+                // Write the top score to the file
+                writer.write(String.valueOf(topScore));
+            } catch (IOException e) {
+                // Error saving highest score
+                Abbreviations.printMessage("Error saving highest score: " + e.getMessage());
+            }
         }
+    }
+
+    /**
+     * Loads the top score from the file.
+     * This method reads the top score from the file specified by SCORE_FILE.
+     * If the file does not exist or an error occurs while reading, returns 0.
+     */
+    private int loadTopScoreFromFile() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(SCORE_FILE))) {
+            // Read the top score from the file
+            String line = reader.readLine();
+            if (line != null) {
+                return Integer.parseInt(line);
+            }
+        } catch (FileNotFoundException e) {
+            // File not found exception
+            Abbreviations.printMessage("File not found: " + SCORE_FILE);
+        } catch (IOException | NumberFormatException e) {
+            // Error loading highest score
+            Abbreviations.printMessage("Error loading highest score: " + e.getMessage());
+        }
+        return 0; // Return 0 if there was an error loading the top score
     }
 }
