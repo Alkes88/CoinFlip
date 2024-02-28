@@ -41,7 +41,6 @@ Improve own coding skills
     │       ├── Game.java
     │       ├── GameOperations.java
     │       ├── Main.java
-    │       ├── controller
     │       └── highscore.txt
     └── resources
         ├── static
