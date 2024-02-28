@@ -27,18 +27,37 @@ Improve own coding skills
 │       └── CoinFlip
 │           └── coinflip
 │               └── main
-│                   ├── Main$CoinSide.class
-│                   └── Main.class
+│                   ├── Abbreviations.class
+│                   ├── Game$CoinSide.class
+│                   ├── Game.class
+│                   ├── GameOperations.class
+│                   ├── Main.class
+│                   └── highscore.txt
+├── pom.xml
 └── src
-    └── coinflip
-        └── main
-            ├── Game.java
-            └── Main.java
+    ├── coinflip
+    │   └── main
+    │       ├── Abbreviations.java
+    │       ├── Coin.java
+    │       ├── CoinFlipApplication.java
+    │       ├── Game.java
+    │       ├── GameOperations.java
+    │       ├── Main.java
+    │       ├── controller
+    │       │   └── GameController.java
+    │       └── highscore.txt
+    └── resources
+        ├── static
+        │   └── css
+        │       └── styles.css
+        └── templates
+            └── index.html
 ```
 
 # To be implemented
-* Visuals
-* Deploy
+* HTML/CSS
+* Spring/GithubPages
+* JS
 * Tests
 
 # Time spent on project
