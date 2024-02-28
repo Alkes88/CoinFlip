@@ -56,7 +56,8 @@ Improve own coding skills
 
 # To be implemented
 * HTML/CSS
-* Spring/GithubPages
+* Spring
+* GithubPages
 * JS
 * Tests
 
