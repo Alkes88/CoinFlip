@@ -33,18 +33,15 @@ Improve own coding skills
 │                   ├── GameOperations.class
 │                   ├── Main.class
 │                   └── highscore.txt
-├── pom.xml
 └── src
     ├── coinflip
     │   └── main
     │       ├── Abbreviations.java
     │       ├── Coin.java
-    │       ├── CoinFlipApplication.java
     │       ├── Game.java
     │       ├── GameOperations.java
     │       ├── Main.java
     │       ├── controller
-    │       │   └── GameController.java
     │       └── highscore.txt
     └── resources
         ├── static
