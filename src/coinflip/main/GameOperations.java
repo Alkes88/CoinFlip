@@ -11,7 +11,7 @@ public class GameOperations {
      * @return the result of flipping the coin (either "heads" or "tails")
      */
     static String flipCoin() {
-        Game.CoinSide[] choices = {Game.CoinSide.HEADS, Game.CoinSide.TAILS};
+        Coin.CoinSide[] choices = {Coin.CoinSide.HEADS, Coin.CoinSide.TAILS};
         return choices[new Random().nextInt(choices.length)].toString();
     }
 
@@ -37,7 +37,7 @@ public class GameOperations {
      * @return true if the choice is valid, false otherwise
      */
     static boolean isValid(String choice) {
-        return choice.equalsIgnoreCase(Game.CoinSide.HEADS.toString()) || choice.equalsIgnoreCase(Game.CoinSide.TAILS.toString());
+        return choice.equalsIgnoreCase(Coin.CoinSide.HEADS.toString()) || choice.equalsIgnoreCase(Coin.CoinSide.TAILS.toString());
     }
 
     /**
@@ -49,7 +49,7 @@ public class GameOperations {
      * @param coinFace the result of the coin flip (HEADS or TAILS)
      * @throws InterruptedException if the thread is interrupted while sleeping
      */
-    static void tossing(String choice, Game.CoinSide coinFace) throws InterruptedException {
+    static void tossing(String choice, Coin.CoinSide coinFace) throws InterruptedException {
         Abbreviations.printMessage("You chose " + choice);
         Abbreviations.printMessage("Flipping coin...");
         Abbreviations.delay(2);

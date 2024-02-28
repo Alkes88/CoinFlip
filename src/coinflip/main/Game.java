@@ -15,12 +15,6 @@ public class Game {
     // File path for storing the top score
     private final String SCORE_FILE = "src/coinflip/main/highscore.txt";
 
-    // Enumeration representing the two sides of a coin
-    enum CoinSide {
-        HEADS,
-        TAILS
-    }
-
     /**
      * Prints the main menu of the game.
      * This method displays the options available to the player in the game menu.
@@ -115,7 +109,7 @@ public class Game {
                 String coinFace = GameOperations.flipCoin();
 
                 // Toss the coin and display the result
-                GameOperations.tossing(choice, CoinSide.valueOf(coinFace));
+                GameOperations.tossing(choice, Coin.CoinSide.valueOf(coinFace));
 
                 // Check if the user guessed correctly
                 if (coinFace.equalsIgnoreCase(choice)) {
