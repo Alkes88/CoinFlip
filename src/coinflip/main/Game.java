@@ -62,21 +62,16 @@ public class Game {
                     start();
                 }
                 case "3" ->
-                    // Exit the menu
                         exitMenu = true;
                 default ->
-                    // Invalid input
                         Abbreviations.printMessage("Invalid choice. Press 1, 2, or 3");
             }
         }
 
-        // Display a quitting message
         Abbreviations.printMessage("Quitting...");
 
-        // Save the top score to the file
         saveTopScore();
 
-        // Close the scanner
         userInput.close();
     }
 
@@ -114,7 +109,7 @@ public class Game {
                 // Check if the user guessed correctly
                 if (coinFace.equalsIgnoreCase(choice)) {
                     Abbreviations.printMessage("Well done!");
-                    score += 1; // Increment score
+                    score += 1;
                 } else {
                     Abbreviations.printMessage("Oops... Will you hold still please?");
                     score = 0;
@@ -135,7 +130,7 @@ public class Game {
             } else {
                 // User chooses to exit the game
                 Abbreviations.printMessage("Goodbye... for now");
-                break; // Exit the loop
+                break;
             }
 
             // Delay before the next iteration
@@ -148,7 +143,6 @@ public class Game {
             Abbreviations.printMessage("New Top Score: " + topScore + "!");
         }
 
-        // Return the player's final score
         return score;
     }
 
@@ -174,10 +168,8 @@ public class Game {
                 topScore = Integer.parseInt(line);
             }
         } catch (FileNotFoundException e) {
-            // File not found exception
             throw new RuntimeException("File not found: " + SCORE_FILE, e);
         } catch (IOException | NumberFormatException e) {
-            // Error loading highest score
             Abbreviations.printMessage("Error loading highest score: " + e.getMessage());
         }
     }
@@ -196,7 +188,6 @@ public class Game {
                 // Write the top score to the file
                 writer.write(String.valueOf(topScore));
             } catch (IOException e) {
-                // Error saving highest score
                 Abbreviations.printMessage("Error saving highest score: " + e.getMessage());
             }
         }
@@ -215,10 +206,8 @@ public class Game {
                 return Integer.parseInt(line);
             }
         } catch (FileNotFoundException e) {
-            // File not found exception
             Abbreviations.printMessage("File not found: " + SCORE_FILE);
         } catch (IOException | NumberFormatException e) {
-            // Error loading highest score
             Abbreviations.printMessage("Error loading highest score: " + e.getMessage());
         }
         return 0; // Return 0 if there was an error loading the top score
