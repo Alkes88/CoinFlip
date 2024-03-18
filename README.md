@@ -51,11 +51,12 @@ Improve own coding skills
 ```
 
 # To be implemented
+* Tests
 * HTML/CSS
 * Spring
 * GithubPages
 * JS
-* Tests
+
 
 # Time spent on project
 [![wakatime](https://wakatime.com/badge/user/d3f10ce3-5913-47b5-a908-6228fe4d4225/project/83f7df7b-9381-433c-af4e-6af9a493c13a.svg)](https://wakatime.com/badge/user/d3f10ce3-5913-47b5-a908-6228fe4d4225/project/83f7df7b-9381-433c-af4e-6af9a493c13a)
