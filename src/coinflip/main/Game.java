@@ -128,12 +128,10 @@ public class Game {
             if (playAgain.equals("y") || playAgain.equals("yes")){
                 Abbreviations.printMessage("Again...");
             } else {
-                // User chooses to exit the game
                 Abbreviations.printMessage("Goodbye... for now");
                 break;
             }
 
-            // Delay before the next iteration
             Abbreviations.delay(1);
         } while (true); // Continue until the user chooses to stop playing
 
@@ -168,7 +166,7 @@ public class Game {
                 topScore = Integer.parseInt(line);
             }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException("File not found: " + SCORE_FILE, e);
+            throw new RuntimeException("File does not exist: %s".formatted(SCORE_FILE), e);
         } catch (IOException | NumberFormatException e) {
             Abbreviations.printMessage("Error loading highest score: " + e.getMessage());
         }
